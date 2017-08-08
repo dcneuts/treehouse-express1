@@ -1,6 +1,15 @@
 const express = require('express');
 const app = express();
 
+const colors = [
+	'red',
+	'orange',
+	'yellow',
+	'green',
+	'blue',
+	'purple'
+];
+
 app.set('view engine', 'pug');
 
 // root route for app
@@ -9,7 +18,7 @@ app.get('/', (req, res) => {
 });
 
 app.get('/cards', (req, res) => {
-	res.render('card', {prompt: "Who is buried in Grant's tomb?", hint: "Think about whose tomb it is."});
+	res.render('card', {prompt: "Who is buried in Grant's tomb?", hint: "Think about whose tomb it is.", colors});
 });
 
 // setup express dev server

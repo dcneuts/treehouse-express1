@@ -2,7 +2,8 @@ const express = require('express');
 const bodyParser = require('body-parser');
 
 const app = express();
-app.use(bodyParser.urlencoded({extended: false}));
+
+app.use(bodyParser.urlencoded({ extended: false }));
 
 app.set('view engine', 'pug');
 
@@ -20,7 +21,7 @@ app.get('/hello', (req, res) => {
 });
 
 app.post('/hello', (req, res) => {
-	res.json(req.body);
+	res.render('hello', {name: req.body.username});
 });
 
 // setup express dev server

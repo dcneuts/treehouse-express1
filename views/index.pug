@@ -2,4 +2,7 @@ extends layout.pug
 
 block content
     section#content
-        h1 Welcome, student!
+        if name
+            h1 Welcome, #{name}!
+        else
+            h1 Welcome!

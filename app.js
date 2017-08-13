@@ -1,14 +1,8 @@
 const express = require('express');
-const app = express();
+const bodyParser = require('body-parser');
 
-const colors = [
-	'red',
-	'orange',
-	'yellow',
-	'green',
-	'blue',
-	'purple'
-];
+const app = express();
+app.use(bodyParser.urlencoded({extended: false}));
 
 app.set('view engine', 'pug');
 
@@ -18,7 +12,15 @@ app.get('/', (req, res) => {
 });
 
 app.get('/cards', (req, res) => {
-	res.render('card', {prompt: "Who is buried in Grant's tomb?", hint: "Think about whose tomb it is.", colors});
+	res.render('card', {prompt: "Who is buried in Grant's tomb?", hint: "Think about whose tomb it is."});
+});
+
+app.get('/hello', (req, res) => {
+	res.render('hello');
+});
+
+app.post('/hello', (req, res) => {
+	res.render('hello');
 });
 
 // setup express dev server

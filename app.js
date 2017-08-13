@@ -20,7 +20,7 @@ app.get('/hello', (req, res) => {
 });
 
 app.post('/hello', (req, res) => {
-	res.render('hello');
+	res.json(req.body);
 });
 
 // setup express dev server

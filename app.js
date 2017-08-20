@@ -9,18 +9,6 @@ app.use(cookieParser());
 
 app.set('view engine', 'pug');
 
-app.use((req, res, next) => {
-	console.log("Hello");
-	const err = new Error('Oh no!');
-	err.status = 500;
-	next(err);
-});
-
-app.use((req, res, next) => {
-	console.log("World");
-	next();
-});
-
 // root route for app
 app.get('/', (req, res) => {
 	const name = req.cookies.username;
@@ -54,10 +42,16 @@ app.post('/goodbye', (req, res) => {
 	res.redirect('/hello');
 });
 
+app.use((req, res, next) => {
+	const err = new Error('Not Found');
+	err.status = 404;
+	next(err);
+});
+
 app.use((err, req, res, next) => {
 	res.locals.error = err;
 	res.status(err.status);
-	res.render('error', err);
+	res.render('error');
 });
 
 // setup express dev server
